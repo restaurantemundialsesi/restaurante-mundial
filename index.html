@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Restaurante Mundial — Alta Gastronomia &amp; Sabores Globais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--cream:#F5EFE2;--card:#FBF7EC;--wine:#6B141A;--emerald:#133122;--gold:#C59337;--ink:#3b2d25;--outer:#E9DFC8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--outer:#0d1d15}}
+:root[data-theme="dark"]{--outer:#0d1d15}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 60px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--outer);color:var(--ink);font-family:'Lora',Georgia,serif;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--emerald);z-index:30}
+h1,h2,h3,.cz{font-family:'Cinzel','Playfair Display',Georgia,serif}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--emerald);color:var(--cream);border-bottom:2px solid var(--gold);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:10px 16px}
+.top .cr{font-family:'Cinzel',Georgia,serif;letter-spacing:.08em;font-size:.82rem}
+.top .cr b{color:var(--gold);font-size:1.05rem}
+.ghost{background:transparent;color:var(--cream);border:1px solid var(--gold);padding:5px 12px;font-size:.72rem;letter-spacing:.1em;cursor:pointer;font-family:'Cinzel',Georgia,serif}
+.ghost:hover{background:var(--gold);color:var(--emerald)}
+.frame{position:relative;max-width:1000px;margin:18px auto;background:var(--cream);border:5px double var(--gold);padding:34px 18px 40px}
+.orn{position:absolute;width:62px;height:62px;pointer-events:none}
+.tl{top:4px;left:4px}.tr{top:4px;right:4px;transform:scaleX(-1)}.bl{bottom:4px;left:4px;transform:scaleY(-1)}.br{bottom:4px;right:4px;transform:scale(-1)}
+.head{text-align:center}
+.row{display:flex;align-items:center;justify-content:center;gap:14px}
+.line{height:1px;width:min(90px,18vw);background:linear-gradient(90deg,transparent,var(--gold),transparent);position:relative}
+.line::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-52%);font-size:.55rem;color:var(--gold);background:var(--cream);padding:0 4px}
+.head h1{color:var(--wine);letter-spacing:.22em;font-size:clamp(1.5rem,6vw,2.5rem);margin:8px 0 2px;font-weight:700}
+.stars{color:var(--gold);letter-spacing:.4em;font-size:.95rem}
+.sub{font-style:italic;color:var(--emerald);margin:6px 0 0;font-size:.95rem}
+.namebox{max-width:520px;margin:26px auto 8px;text-align:center;padding:16px;border:1px solid var(--gold);background:var(--card);box-shadow:inset 0 0 0 4px var(--card),inset 0 0 0 5px rgba(197,147,55,.55)}
+.namebox label,.fl{display:block;font-family:'Cinzel',Georgia,serif;color:var(--wine);letter-spacing:.14em;font-size:.8rem;margin-bottom:6px}
+.inp{width:100%;padding:11px 12px;border:1px solid var(--gold);background:#fff;color:var(--ink);font:inherit;font-size:1rem;text-align:center}
+.inp:focus{outline:2px solid var(--emerald);outline-offset:1px}
+.grid{display:grid;gap:26px;margin-top:30px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.card{position:relative;background:var(--card);border:1px solid var(--gold);box-shadow:inset 0 0 0 4px var(--card),inset 0 0 0 5px rgba(197,147,55,.6);padding:20px 20px 22px;text-align:center;display:flex;flex-direction:column;gap:8px}
+.card .orn{width:34px;height:34px;opacity:.85}
+.card .tl{top:7px;left:7px}.card .tr{top:7px;right:7px}.card .bl,.card .br{display:none}
+.arch{position:relative;width:86px;height:104px;margin:0 auto}
+.arch svg{position:absolute;inset:0}
+.arch span{position:absolute;inset:34px 0 0;display:flex;align-items:center;justify-content:center;font-size:2.3rem}
+.card h2{color:var(--wine);letter-spacing:.16em;font-size:1.2rem;margin:4px 0 0;text-transform:uppercase}
+.card h3{color:var(--emerald);font-size:1rem;letter-spacing:.06em;margin:0}
+.card p{margin:0;font-size:.92rem;flex:1}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;border:1px solid rgba(197,147,55,.7);padding:9px 11px;cursor:default;background:#fff8}
+.opt:has(input:checked){border-color:var(--wine);background:#fff;box-shadow:0 0 0 1px var(--wine)}
+.opt input{accent-color:var(--wine);margin-top:5px}
+.opt b{display:block;color:var(--emerald);font-family:'Cinzel',Georgia,serif;font-size:.88rem}
+.opt small{font-size:.82rem}
+.btn{background:var(--emerald);color:var(--gold);border:1px solid var(--gold);padding:12px 16px;font-family:'Cinzel',Georgia,serif;font-weight:700;letter-spacing:.12em;font-size:.85rem;cursor:pointer;width:100%;margin-top:8px}
+.btn:hover:not(:disabled){background:var(--wine);color:var(--cream)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.foot{text-align:center;margin-top:34px;font-size:.8rem;color:var(--emerald);font-style:italic}
+#ov{position:fixed;inset:0;z-index:60;background:rgba(10,22,16,.72);display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 12px) 12px calc(env(safe-area-inset-bottom,0px) + 12px)}
+#ov.on{display:flex}
+.modal{position:relative;width:100%;max-width:480px;max-height:100%;overflow-y:auto;background:var(--cream);border:5px double var(--gold);padding:26px 22px}
+.modal h2{color:var(--wine);text-align:center;letter-spacing:.12em;font-size:1.1rem;margin:0 0 14px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dotted var(--gold);font-size:.95rem}
+.kv span:first-child{color:var(--emerald);font-family:'Cinzel',Georgia,serif;font-size:.78rem;letter-spacing:.1em}
+.kv span:last-child{text-align:right;font-weight:600}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:14px 0;text-align:center}
+.sum div{border:1px solid var(--gold);padding:8px 4px;background:var(--card);font-size:.72rem;font-family:'Cinzel',Georgia,serif;letter-spacing:.05em}
+.sum b{display:block;color:var(--wine);font-size:1.15rem}
+.cancel{display:block;margin:12px auto 0;background:none;border:0;color:var(--wine);text-decoration:underline;cursor:pointer;font:inherit;font-size:.85rem}
+.seal{margin:6px auto 14px;width:fit-content;max-width:100%;text-align:center;transform:rotate(-2deg);border:2px solid var(--wine);outline:1px solid var(--emerald);outline-offset:3px;color:var(--wine);padding:7px 14px;font-family:'Cinzel',Georgia,serif;font-weight:700;letter-spacing:.1em;font-size:.82rem}
+.who{text-align:center;margin:8px 0 10px}
+.who small{display:block;color:var(--emerald);font-family:'Cinzel',Georgia,serif;letter-spacing:.14em;font-size:.7rem}
+.who b{font-family:'Cinzel',Georgia,serif;color:var(--wine);font-size:1.5rem;word-break:break-word}
+.warn{text-align:center;font-style:italic;font-size:.85rem;color:var(--emerald);margin:14px 0 4px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="o" viewBox="0 0 60 60"><g fill="none" stroke-width="1.2"><path d="M2 2H58M2 2V58" stroke="#C59337" opacity=".7"/><rect x="12" y="12" width="32" height="32" stroke="#C59337"/><rect x="12" y="12" width="32" height="32" stroke="#133122" transform="rotate(45 28 28)"/><circle cx="28" cy="28" r="9" stroke="#6B141A"/><circle cx="28" cy="28" r="2.6" fill="#C59337" stroke="none"/></g></symbol>
+</svg>
+
+<div class="top">
+  <div class="cr">CRÉDITO DISPONÍVEL: <b><span id="bal">10</span> GLB</b> (Globos)</div>
+  <button class="ghost" id="reset" type="button">Novo Cliente / Reiniciar</button>
+</div>
+
+<main class="frame">
+  <svg class="orn tl"><use href="#o"/></svg><svg class="orn tr"><use href="#o"/></svg>
+  <svg class="orn bl"><use href="#o"/></svg><svg class="orn br"><use href="#o"/></svg>
+
+  <header class="head">
+    <div class="row">
+      <span class="line"></span>
+      <svg width="68" height="68" viewBox="0 0 68 68" aria-hidden="true">
+        <circle cx="34" cy="34" r="30" fill="#133122" stroke="#C59337" stroke-width="2"/>
+        <circle cx="34" cy="34" r="26" fill="none" stroke="#C59337" stroke-width=".8"/>
+        <ellipse cx="34" cy="34" rx="12" ry="26" fill="none" stroke="#C59337" stroke-width="1.2"/>
+        <path d="M34 8V60M8 34H60M12 21H56M12 47H56" stroke="#C59337" stroke-width="1.2" fill="none"/>
+        <circle cx="34" cy="34" r="3" fill="#F5EFE2"/>
+      </svg>
+      <span class="line"></span>
+    </div>
+    <h1>RESTAURANTE MUNDIAL</h1>
+    <div class="stars" aria-label="Cinco estrelas">★★★★★</div>
+    <p class="sub">Alta Gastronomia &amp; Sabores Globais</p>
+  </header>
+
+  <div id="shop">
+  <section class="namebox">
+    <label for="name">SEU NOME</label>
+    <input id="name" class="inp" type="text" maxlength="60" placeholder="Digite seu nome completo…" autocomplete="off">
+  </section>
+
+  <section class="grid" id="menu" aria-label="Cardápio por país"></section>
+  <p class="foot">Cada prato custa 10 GLB — um pedido por cliente.</p>
+  </div>
+  <section id="receipt" hidden></section>
+</main>
+
+<div id="ov" role="dialog" aria-modal="true"><div class="modal" id="modal"></div></div>
+
+<script>
+const PRICE = 10;
+let bal = PRICE, pick = null, locked = false;
+const $ = id => document.getElementById(id);
+
+const MENU = [
+  { id: "nz", country: "Nova Zelândia", flag: "🇳🇿", dishes: [
+    { n: "Mince on Toast", d: "Pão de forma artesanal torrado coberto com ragu encorpado de carne moída bovina, cebola, alho, caldo de carne reduzido e toque de molho inglês." } ] },
+  { id: "au", country: "Austrália", flag: "🇦🇺", combo: true, dishes: [
+    { n: "Aussie Sausage Roll", d: "Massa folhada crocante recheada com carne moída temperada e molho de tomate artesanal." },
+    { n: "Cheesy Herby Garlic Bread", d: "Pão tostado na manteiga de alho, ervas finas e queijo gratinado." } ] },
+  { id: "in", country: "Índia", flag: "🇮🇳", dishes: [
+    { n: "Banquete Indiano (Murgh Makhani, Pão Naan & Shikanji)", d: "Cubos de frango marinados em iogurte e especiarias indianas ao molho aveludado de tomate, castanha de caju, creme de leite, manteiga e feno-grego. Acompanha pão naan macio com alho e coentro fresco e refresco gelado de limão, hortelã e especiarias (Shikanji)." } ] },
+  { id: "ae", country: "Emirados Árabes", flag: "🇦🇪", dishes: [
+    { n: "Cuscuz Marroquino Real", d: "Cuscuz delicadamente temperado com limão siciliano e pimenta-do-reino, salteado com cebola roxa, cenoura, salsão, pimentão vermelho e castanhas de caju tostadas." } ] },
+  { id: "bd", country: "Bangladesh", flag: "🇧🇩", dishes: [
+    { n: "Mishti Doi", d: "Sobremesa tradicional gelada de iogurte natural e leite lentamente reduzido, com notas suaves e sofisticadas de caramelo." } ] }
+];
+
+function renderMenu() {
+  $("menu").innerHTML = MENU.map(c => {
+    const body = c.combo
+      ? `<h3 style="text-align:center">Combo Australiano — os dois pratos juntos</h3>` + c.dishes.map(d => `<div class="opt"><span><b>${d.n}</b><small>${d.d}</small></span></div>`).join("")
+      : `<h3>${c.dishes[0].n}</h3><p>${c.dishes[0].d}</p>`;
+    return `<article class="card">
+      <svg class="orn tl"><use href="#o"/></svg><svg class="orn tr"><use href="#o"/></svg>
+      <div class="arch"><svg viewBox="0 0 86 104" fill="none"><path d="M3 102V50Q3 22 43 3Q83 22 83 50V102" stroke="#C59337" stroke-width="2"/><path d="M9 102V51Q9 27 43 11Q77 27 77 51V102" stroke="#6B141A" stroke-width=".8"/></svg><span>${c.flag}</span></div>
+      <h2>${c.country}</h2>${c.combo ? `<div style="display:grid;gap:8px;text-align:left;flex:1">${body}</div>` : body}
+      <button class="btn" type="button" data-id="${c.id}">Escolher • ${PRICE} GLB</button>
+    </article>`;
+  }).join("");
+  syncButtons();
+}
+
+function syncButtons() {
+  document.querySelectorAll("#menu .btn").forEach(b => {
+    b.disabled = bal < PRICE;
+    b.textContent = bal < PRICE ? "Crédito esgotado" : `Escolher • ${PRICE} GLB`;
+  });
+  $("bal").textContent = bal;
+}
+
+function openConfirm(id) {
+  if (bal < PRICE) return;
+  const c = MENU.find(m => m.id === id);
+  pick = { country: c.country, flag: c.flag, dish: c.dishes.map(d => d.n).join(" + ") };
+  $("modal").innerHTML = `
+    <svg class="orn tl" style="width:40px;height:40px"><use href="#o"/></svg><svg class="orn tr" style="width:40px;height:40px"><use href="#o"/></svg>
+    <h2>CONFIRMAR PEDIDO</h2>
+    <label class="fl" for="mName">NOME DO CLIENTE</label>
+    <input id="mName" class="inp" type="text" maxlength="60" placeholder="Digite seu nome completo…" autocomplete="off">
+    <div class="kv" style="margin-top:12px"><span>PAÍS</span><span>${pick.flag} ${pick.country}</span></div>
+    <div class="kv"><span>PRATO</span><span>${pick.dish}</span></div>
+    <div class="sum"><div>SALDO ATUAL<b>${bal} GLB</b></div><div>VALOR DO PRATO<b>${PRICE} GLB</b></div><div>SALDO APÓS COMPRA<b>${bal - PRICE} GLB</b></div></div>
+    <button class="btn" id="go" type="button">CONFIRMAR PEDIDO E USAR ${PRICE} GLB</button>
+    <button class="cancel" id="no" type="button">Voltar ao cardápio</button>`;
+  $("mName").value = $("name").value;
+  $("mName").addEventListener("input", e => { $("name").value = e.target.value; });
+  $("go").addEventListener("click", confirmOrder);
+  $("no").addEventListener("click", closeOv);
+  $("ov").classList.add("on");
+  $("mName").focus();
+}
+
+function confirmOrder() {
+  const who = $("mName").value.trim() || "Convidado(a)";
+  bal -= PRICE; locked = true; syncButtons();
+  const now = new Date();
+  const code = `#RM-${now.getFullYear()}-${Math.floor(100 + Math.random() * 900)}`;
+  const when = now.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "medium" });
+  closeOv();
+  $("shop").hidden = true;
+  $("receipt").hidden = false;
+  $("receipt").innerHTML = `<div class="modal" style="margin:24px auto 0">
+    <svg class="orn tl" style="width:40px;height:40px"><use href="#o"/></svg><svg class="orn tr" style="width:40px;height:40px"><use href="#o"/></svg>
+    <h2>RESTAURANTE MUNDIAL — COMPROVANTE DE PAGAMENTO</h2>
+    <div class="seal">✓ CRÉDITO DE ${PRICE} GLB UTILIZADO</div>
+    <div class="who"><small>CLIENTE</small><b id="rWho"></b></div>
+    <div class="kv"><span>PAÍS</span><span>${pick.flag} ${pick.country}</span></div>
+    <div class="kv"><span>PRATO</span><span>${pick.dish}</span></div>
+    <div class="kv"><span>VALOR</span><span>${PRICE} GLB</span></div>
+    <div class="kv"><span>DATA / HORA</span><span>${when}</span></div>
+    <div class="kv"><span>CÓDIGO</span><span>${code}</span></div>
+    <p class="warn">Apresente este comprovante no balcão do país escolhido para retirar seu prato.</p>
+    <button class="btn" id="next" type="button">Novo Pedido / Próximo Cliente (${PRICE} GLB)</button></div>`;
+  $("rWho").textContent = who;
+  $("next").addEventListener("click", resetAll);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function closeOv() { $("ov").classList.remove("on"); }
+
+function resetAll() {
+  bal = PRICE; locked = false; pick = null;
+  $("name").value = "";
+  closeOv(); $("receipt").hidden = true; $("receipt").innerHTML = ""; $("shop").hidden = false; renderMenu();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+$("menu").addEventListener("click", e => {
+  const b = e.target.closest(".btn");
+  if (b) openConfirm(b.dataset.id);
+});
+$("reset").addEventListener("click", resetAll);
+$("ov").addEventListener("click", e => { if (e.target === $("ov") && !locked) closeOv(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !locked) closeOv(); });
+renderMenu();
+</script>
+</body>
+</html>
